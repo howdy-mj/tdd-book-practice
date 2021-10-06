@@ -1,16 +1,21 @@
-class Dollar {
-  constructor(private amount: number) {}
+class Money {
+  constructor(protected amount: number) {}
+}
 
-  times(): number {
-    return this.amount * 2;
+class Dollar extends Money {
+  constructor(props) {
+    super(props);
   }
 
-  equals(target: Dollar): boolean {
-    return this.amount === target.amount;
+  times(num: number): number {
+    return this.amount * num;
+  }
+
+  equals(targetAmount: number): boolean {
+    return this.amount === targetAmount;
   }
 }
 
 const fiveDollar = new Dollar(5);
-export const returnTen = fiveDollar.times();
 
-export const isEqual = new Dollar(5).equals(new Dollar(6));
+export const isEqual = new Dollar(10).equals(fiveDollar.times(2));
